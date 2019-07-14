@@ -10,9 +10,12 @@
   </ion-header>
   
   <ion-content>
-    <ion-card padding *ngFor="let restaurant of restaurants">
-      <h3><b>{{restaurant.restaurant_name}}</b></h3>
-      Estimated price per person: RM {{restaurant.restaurant_price}}
-      <p>{{restaurant.restaurant_description}}</p>
+
+    <ion-card (click)="showRestaurant(restaurant.restaurant_id, restaurant.restaurant_name, 
+    restaurant.restaurant_description, restaurant.restaurant_price, restaurant.restaurant_address)" 
+    padding *ngFor="let restaurant of restaurants">
+      <h5><b>{{restaurant.cuisine_name}}</b></h5>
+      {{restaurant.restaurant_name}}
     </ion-card>
+
   </ion-content>

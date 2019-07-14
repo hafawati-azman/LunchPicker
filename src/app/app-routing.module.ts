@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'restaurant', loadChildren: './restaurant/restaurant.module#RestaurantPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'about', loadChildren: './about/about.module#AboutPageModule' }
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'show-restaurant/:restaurant_id/:restaurant_name/:restaurant_description/:restaurant_price/:restaurant_address', 
+  loadChildren: './show-restaurant/show-restaurant.module#ShowRestaurantPageModule' }
 ];
 
 @NgModule({
