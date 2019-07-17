@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      MY PROFILE
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+  
+  
+  <ion-card *ngFor="let user of users">
+      <ion-card-header>
+        <ion-card-title>Hello, {{user.user_name}}!</ion-card-title>
+        <br><br>
+        <div text-center><ion-icon name="person"></ion-icon></div>
+        <!-- <img src="assets/userprofile.png"> -->
+      </ion-card-header>
+      
+      
+        <h4 text-center>{{user.user_name}}</h4>
+        <h4 text-center>{{user.user_email}}</h4>
+        <br><br>
+        <div text-center><ion-button shape="round" size="small" fill="outline">Edit Profile</ion-button></div>
+        <div text-center><ion-button shape="round" size="small" color="danger" (click)="logout()">Log Out</ion-button></div>
+      
+  </ion-card>
+</ion-content>

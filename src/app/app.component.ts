@@ -21,6 +21,11 @@ export class AppComponent {
       icon: 'search'
     },
     {
+      title: 'Profile',
+      url: '/user-profile',
+      icon: 'person'
+    },
+    {
       title: 'About',
       url: '/about',
       icon: 'information-circle'
