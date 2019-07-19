@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/user-profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      EDIT PROFILE
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+  <br>
+  <br>
+<form [formGroup]="editProfileForm" (ngSubmit)="editUserProfile()" *ngFor="let user of users">
+  <ion-input placeholder="{{user.user_name}}" formControlName="user_name"></ion-input>
+  <ion-input placeholder="{{user.user_email}}" formControlName="user_email"></ion-input>
+  <ion-input placeholder="{{user.user_password}}" formControlName="user_password"></ion-input>
+  <ion-button padding shape="round" expand="block" type="submit" block>Update</ion-button>
+</form>
+<ion-button padding shape="round" expand="block" (click)="cancelEdit()" color="danger">Cancel</ion-button>
+</ion-content>

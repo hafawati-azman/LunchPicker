@@ -44,4 +44,8 @@ export class UserProfilePage implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  editProfile() {
+    this.router.navigateByUrl('/edit-profile');
+  }
+
 }

@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
   { path: 'show-restaurant/:restaurant_id/:restaurant_name/:restaurant_description/:restaurant_price/:restaurant_address', 
   loadChildren: './show-restaurant/show-restaurant.module#ShowRestaurantPageModule' },
-  { path: 'user-profile', loadChildren: './user-profile/user-profile.module#UserProfilePageModule' }
+  { path: 'user-profile', loadChildren: './user-profile/user-profile.module#UserProfilePageModule' },
+  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' }
 ];
 
 @NgModule({

@@ -39,7 +39,7 @@ export class RegisterPage implements OnInit {
     this.http.post('http://127.0.0.1/lp_registeruser.php', data).subscribe(
       async (result) => {
         console.log(result);
-        ///this.router.navigate['/login']
+        this.router.navigateByUrl('/login');
         const toast = await this.toastController.create({
           message: 'Congratulations, you may now login!',
           duration: 2000

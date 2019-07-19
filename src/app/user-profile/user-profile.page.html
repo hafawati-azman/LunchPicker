@@ -3,6 +3,9 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-icon name="log-out" color="danger" size="small" (click)="logout()"></ion-icon>
+      </ion-buttons>
     <ion-title>
       MY PROFILE
     </ion-title>
@@ -16,18 +19,24 @@
   
   <ion-card *ngFor="let user of users">
       <ion-card-header>
-        <ion-card-title>Hello, {{user.user_name}}!</ion-card-title>
+        <ion-card-title></ion-card-title>
         <br><br>
         <div text-center><ion-icon name="person"></ion-icon></div>
-        <!-- <img src="assets/userprofile.png"> -->
+        <!-- <img src="assets/userprofile.jpg"> -->
+        <div text-right><ion-button shape="round" size="small" fill="outline" (click)="editProfile()">Edit Profile</ion-button></div>
       </ion-card-header>
       
-      
-        <h4 text-center>{{user.user_name}}</h4>
-        <h4 text-center>{{user.user_email}}</h4>
+      <ion-card-content text-center> 
+        <p>{{user.user_name}}</p>
+        <p>{{user.user_email}}</p>
         <br><br>
-        <div text-center><ion-button shape="round" size="small" fill="outline">Edit Profile</ion-button></div>
-        <div text-center><ion-button shape="round" size="small" color="danger" (click)="logout()">Log Out</ion-button></div>
-      
+      </ion-card-content>
   </ion-card>
+
+  <ion-card text-left> Eating history: (Below are only example)
+      <div text-right><ion-button size="small">Add?</ion-button></div>
+      <p>18th July 2019: Asian</p>
+      <p>18th July 2019: Snack</p>
+  </ion-card>
+      
 </ion-content>
