@@ -50,7 +50,7 @@ export class EditProfilePage implements OnInit {
       }))
   }
 
-  editUserProfile() {
+  async editUserProfile() {
     this.storage.get('user_id')
     .then(((val) => {
       this.user_id = val;
@@ -66,7 +66,7 @@ export class EditProfilePage implements OnInit {
     this.http.post('http://127.0.0.1/lp_edituserprofile.php', data).subscribe(
       async (result) => {
         console.log(result);
-        this.router.navigateByUrl('/user-profile');
+        this.router.navigate(['/user-profile']);
         const toast = await this.toastController.create({
           message: 'Congratulations, update successful!',
           duration: 2000
