@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Validators, FormGroup, FormBuilder, FormControl } from "@angular/forms";
 import { ToastController } from '@ionic/angular';
-//import { async } from 'q';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.page.html',
-  styleUrls: ['./edit-profile.page.scss'],
+  selector: 'app-add-eating-history',
+  templateUrl: './add-eating-history.page.html',
+  styleUrls: ['./add-eating-history.page.scss'],
 })
-export class EditProfilePage implements OnInit {
+export class AddEatingHistoryPage implements OnInit {
 
-  editProfileForm: FormGroup;
+  addEatingHistory: FormGroup;
   public user_id;
   public users;
 
@@ -24,10 +23,9 @@ export class EditProfilePage implements OnInit {
     private router: Router,
     private storage: Storage
   ) { 
-    this.editProfileForm = this.formBuilder.group({
-      user_name: new FormControl(''),
-      user_email: new FormControl(''),
-      user_password: new FormControl(''),
+    this.addEatingHistory = this.formBuilder.group({
+      date: new FormControl(''),
+      cuisine_id: new FormControl(''),
     })
   }
 
@@ -50,25 +48,28 @@ export class EditProfilePage implements OnInit {
       }))
   }
 
-  async editUserProfile() {
+  cancelAdd() {
+    this.router.navigateByUrl('/user-profile');
+  }
+
+  addHistory() {
     this.storage.get('user_id')
     .then(((val) => {
       this.user_id = val;
       //console.log(this.user_id);
       let data = {
         user_id: this.user_id,
-        user_name: this.editProfileForm.value.user_name,
-        user_email: this.editProfileForm.value.user_email,
-        user_password: this.editProfileForm.value.user_password,
+        date: this.addEatingHistory.value.date,
+        cuisine_id: this.addEatingHistory.value.cuisine_id,
       }
 
     console.log(data);
-    this.http.post('http://127.0.0.1/lp_edituserprofile.php', data).subscribe(
+    this.http.post('http://127.0.0.1/lp_addeatinghistory.php', data).subscribe(
       async (result) => {
         console.log(result);
         this.router.navigate(['/user-profile']);
         const toast = await this.toastController.create({
-          message: 'Congratulations, update successful!',
+          message: 'Congratulations, you have successfully add eating history!',
           duration: 2000
          });
         toast.present();
@@ -78,10 +79,6 @@ export class EditProfilePage implements OnInit {
         console.log(JSON.stringify(err));
       });
     }))
-  }
-
-  cancelEdit() {
-    this.router.navigateByUrl('/user-profile');
   }
 
 }

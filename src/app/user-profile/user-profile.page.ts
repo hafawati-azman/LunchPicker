@@ -12,6 +12,8 @@ export class UserProfilePage implements OnInit {
 
   public user_id;
   public users;
+  public history;
+  
   constructor(
     private storage: Storage,
     private http:HttpClient,
@@ -36,6 +38,16 @@ export class UserProfilePage implements OnInit {
           }, (error: any) => {
               console.log(JSON.stringify(error));
             });
+        
+            this.http.post('http://127.0.0.1/lp_eatinghistory.php', data)
+            .subscribe((data: any) => {
+              console.log(data);
+              this.history = data;
+  
+            }, (error: any) => {
+                console.log(JSON.stringify(error));
+              });
+        
       }))
   }
 
@@ -46,6 +58,10 @@ export class UserProfilePage implements OnInit {
 
   editProfile() {
     this.router.navigateByUrl('/edit-profile');
+  }
+
+  addEatingHistory() {
+    this.router.navigateByUrl('/add-eating-history');
   }
 
 }

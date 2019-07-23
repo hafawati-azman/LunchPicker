@@ -5,14 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UserProfilePage } from './user-profile.page';
-
-
+import { AddEatingHistoryPage } from './add-eating-history.page';
+import { ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserProfilePage
+    component: AddEatingHistoryPage
   }
 ];
 
@@ -22,8 +21,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [UserProfilePage]
+  declarations: [AddEatingHistoryPage]
 })
-export class UserProfilePageModule {}
+export class AddEatingHistoryPageModule {}

@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'show-restaurant/:restaurant_id/:restaurant_name/:restaurant_description/:restaurant_price/:restaurant_address', 
   loadChildren: './show-restaurant/show-restaurant.module#ShowRestaurantPageModule' },
   { path: 'user-profile', loadChildren: './user-profile/user-profile.module#UserProfilePageModule' },
-  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' }
+  { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
+  { path: 'add-eating-history', loadChildren: './add-eating-history/add-eating-history.module#AddEatingHistoryPageModule' }
 ];
 
 @NgModule({

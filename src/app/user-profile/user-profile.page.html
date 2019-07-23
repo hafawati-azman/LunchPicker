@@ -14,9 +14,6 @@
 
 <ion-content>
 
-  
-  
-  
   <ion-card *ngFor="let user of users">
       <ion-card-header>
         <ion-card-title></ion-card-title>
@@ -33,10 +30,18 @@
       </ion-card-content>
   </ion-card>
 
-  <ion-card text-left> Eating history: (Below are only example)
-      <div text-right><ion-button size="small">Add?</ion-button></div>
-      <p>18th July 2019: Asian</p>
-      <p>18th July 2019: Snack</p>
-  </ion-card>
+  <h4 text-center>Eating history:</h4>
+  <div text-right><ion-button size="small" (click)="addEatingHistory()">Add?</ion-button></div>
+  
+  <ion-list>
+    <ion-item *ngFor="let h of history">
+      {{h.date}}: {{h.cuisine_name}}
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-card text-left *ngFor="let h of history">
+      <p>{{h.date}}</p>
+      <p>{{h.id}}</p>
+  </ion-card> -->
       
 </ion-content>

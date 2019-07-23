@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/user-profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      ADD EATING HISTORY
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+  <p>This is only temporary, better UI will be created soon.</p>
+  <p>Guide to add eating history:</p>
+  <p>Date: Enter in format of YYYY-MM-DD (i.e: 2019-05-06)</p>
+  <p>Type of cuisine: please enter number as shown below.</p>
+  <ion-list>
+      <ion-item>100: Fast Food</ion-item>
+      <ion-item>101: Asian</ion-item>
+      <ion-item>102: Western</ion-item>
+      <ion-item>103: Snack</ion-item>
+      <ion-item>104: Dessert</ion-item>
+      <ion-item>105: Others</ion-item>
+    </ion-list>
+<form [formGroup]="addEatingHistory" (ngSubmit)="addHistory()">
+  <ion-input placeholder="Date" formControlName="date"></ion-input>
+  <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input>
+  <ion-button padding shape="round" expand="block" type="submit" block>Add Eating History</ion-button>
+</form>
+<ion-button padding shape="round" expand="block" (click)="cancelAdd()" color="danger">Cancel</ion-button>
+</ion-content>

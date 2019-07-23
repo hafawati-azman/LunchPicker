@@ -29,6 +29,7 @@
     "cordova-plugin-advanced-http": "2.1.1",
     "cordova-sqlite-storage": "3.2.1",
     "core-js": "^2.5.4",
+    "ionic-tooltips": "^4.0.0-beta.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
