@@ -11,11 +11,12 @@
   
   <ion-content>
 
-    <ion-card (click)="showRestaurant(restaurant.restaurant_id, restaurant.restaurant_name, 
+    <ion-card (click)="showRestaurant(restaurant.restaurant_id, restaurant.restaurant_name,
     restaurant.restaurant_description, restaurant.restaurant_price, restaurant.restaurant_address)" 
     padding *ngFor="let restaurant of restaurants">
       <h5><b>{{restaurant.cuisine_name}}</b></h5>
       {{restaurant.restaurant_name}}
+      <p text-center><img src="{{restaurant.restaurant_image}}"></p>
     </ion-card>
 
   </ion-content>

@@ -22,6 +22,36 @@ export class UserProfilePage implements OnInit {
 
   ngOnInit() {
 
+    // this.storage.get('user_id')
+    //   .then(((val) => {
+    //     this.user_id = val;
+    //     console.log(this.user_id);
+    //     let data = {
+    //       user_id: this.user_id,
+    //     }
+
+    //     this.http.post('http://127.0.0.1/lp_userprofile.php', data)
+    //       .subscribe((data: any) => {
+    //         console.log(data);
+    //         this.users = data;
+
+    //       }, (error: any) => {
+    //           console.log(JSON.stringify(error));
+    //         });
+        
+    //         this.http.post('http://127.0.0.1/lp_eatinghistory.php', data)
+    //         .subscribe((data: any) => {
+    //           console.log(data);
+    //           this.history = data;
+  
+    //         }, (error: any) => {
+    //             console.log(JSON.stringify(error));
+    //           });
+        
+    //   }))
+  }
+
+  ionViewWillEnter() {
     this.storage.get('user_id')
       .then(((val) => {
         this.user_id = val;
