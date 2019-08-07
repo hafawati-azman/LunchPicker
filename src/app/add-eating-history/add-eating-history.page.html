@@ -9,23 +9,38 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content text-center>
-  <p>This is only temporary, better UI will be created soon.</p>
-  <p>Guide to add eating history:</p>
-  <p>Date: Enter in format of YYYY-MM-DD (i.e: 2019-05-06)</p>
-  <p>Type of cuisine: please enter number as shown below.</p>
-  <ion-list>
-      <ion-item>100: Fast Food</ion-item>
-      <ion-item>101: Asian</ion-item>
-      <ion-item>102: Western</ion-item>
-      <ion-item>103: Snack</ion-item>
-      <ion-item>104: Dessert</ion-item>
-      <ion-item>105: Others</ion-item>
-    </ion-list>
+<pre></pre>
+
 <form [formGroup]="addEatingHistory" (ngSubmit)="addHistory()">
-  <ion-input placeholder="Date" formControlName="date"></ion-input>
-  <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input>
+
+  <ion-input placeholder="Date (YYYY-MM-DD)" formControlName="date"></ion-input>
+  <!-- <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input> -->
+  
+  <ion-item>
+    <ion-label>Type of cuisine</ion-label>
+    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select One"
+    formControlName="cuisine_id">
+      <ion-select-option value="100">Fast Food</ion-select-option>
+      <ion-select-option value="101">Asian</ion-select-option>
+      <ion-select-option value="102">Western</ion-select-option>
+      <ion-select-option value="103">Snack</ion-select-option>
+      <ion-select-option value="104">Dessert</ion-select-option>
+      <ion-select-option value="105">Others</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-button padding shape="round" expand="block" type="submit" block>Add Eating History</ion-button>
+
 </form>
+
 <ion-button padding shape="round" expand="block" (click)="cancelAdd()" color="danger">Cancel</ion-button>
+
+<!-- 
+  https://ionicframework.com/docs/native/date-picker
+  https://www.youtube.com/watch?v=hiirVXzSCpo
+ -->
+
+
 </ion-content>
