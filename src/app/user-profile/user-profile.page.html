@@ -34,14 +34,15 @@
   <div text-right><ion-button size="small" (click)="addEatingHistory()">Add?</ion-button></div>
   
   <ion-list>
-    <ion-item *ngFor="let h of history">
-      {{h.date}}: {{h.cuisine_name}}
-    </ion-item>
-  </ion-list>
+    <ion-item-sliding *ngFor="let h of history">
+      
+      <ion-item><ion-datetime display-format="DD/MMM/YYYY">{{h.history_date}}</ion-datetime>: {{h.cuisine_name}}</ion-item>
 
-  <!-- <ion-card text-left *ngFor="let h of history">
-      <p>{{h.date}}</p>
-      <p>{{h.id}}</p>
-  </ion-card> -->
+      <ion-item-options side="end">
+        <ion-item-option color="secondary" (click)="editEatingHistory(h.id)">Edit</ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
       
 </ion-content>

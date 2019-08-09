@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/user-profile"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        EDIT EATING HISTORY
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content>
+<pre></pre>
+
+<form [formGroup]="editEatingHistory" (ngSubmit)="editHistory()" *ngFor="let h of history">
+  <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime formControlName="history_date" display-format="DD/MMMM/YYYY" picker-format="D MMMM YYYY" placeholder="{{h.history_date}}"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>Type of cuisine</ion-label>
+      <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="{{h.cuisine_name}}" formControlName="cuisine_id">
+          
+            <ion-select-option value="100">Fast Food</ion-select-option>
+            <ion-select-option value="101">Asian</ion-select-option>
+            <ion-select-option value="102">Western</ion-select-option>
+            <ion-select-option value="103">Snack</ion-select-option>
+            <ion-select-option value="104">Dessert</ion-select-option>
+            <ion-select-option value="105">Others</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+<ion-button padding shape="round" expand="block" color="success" type="submit">Edit</ion-button>
+
+</form>
+
+<ion-button padding shape="round" expand="block" (click)="deleteEatingHistory()" color="danger">Delete</ion-button>
+</ion-content>

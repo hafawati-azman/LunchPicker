@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,12 +12,14 @@ import { Router } from '@angular/router';
 export class UserProfilePage implements OnInit {
 
   public user_id;
+  public id;
   public users;
   public history;
   
   constructor(
     private storage: Storage,
     private http:HttpClient,
+    public toastController: ToastController,
     private router: Router
   ) { }
 
@@ -55,10 +58,11 @@ export class UserProfilePage implements OnInit {
     this.storage.get('user_id')
       .then(((val) => {
         this.user_id = val;
-        console.log(this.user_id);
+        
         let data = {
           user_id: this.user_id,
         }
+        console.log(data);
 
         this.http.post('http://127.0.0.1/lp_userprofile.php', data)
           .subscribe((data: any) => {
@@ -93,5 +97,11 @@ export class UserProfilePage implements OnInit {
   addEatingHistory() {
     this.router.navigateByUrl('/add-eating-history');
   }
+
+  editEatingHistory(id) {
+    this.storage.set('id',id);
+    this.router.navigate(['/edit-eating-history/']);
+  }
+
 
 }

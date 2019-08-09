@@ -15,8 +15,13 @@
 
 <form [formGroup]="addEatingHistory" (ngSubmit)="addHistory()">
 
-  <ion-input placeholder="Date (YYYY-MM-DD)" formControlName="date"></ion-input>
-  <!-- <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input> -->
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime formControlName="history_date" display-format="DD/MMM/YYYY" picker-format="D MMM YYYY"></ion-datetime>
+  </ion-item>
+
+  <!--<ion-input placeholder="Date (YYYY-MM-DD)" formControlName="date"></ion-input>
+   <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input> -->
   
   <ion-item>
     <ion-label>Type of cuisine</ion-label>

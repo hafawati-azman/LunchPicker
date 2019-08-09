@@ -15,6 +15,8 @@ export class AddEatingHistoryPage implements OnInit {
   addEatingHistory: FormGroup;
   public user_id;
   public users;
+  public hd;
+  
 
   constructor(
     private http: HttpClient, 
@@ -24,7 +26,7 @@ export class AddEatingHistoryPage implements OnInit {
     private storage: Storage
   ) { 
     this.addEatingHistory = this.formBuilder.group({
-      date: new FormControl(''),
+      history_date: new FormControl(''),
       cuisine_id: new FormControl(''),
     })
   }
@@ -46,6 +48,8 @@ export class AddEatingHistoryPage implements OnInit {
               console.log(JSON.stringify(error));
             });
       }))
+
+      
   }
 
   cancelAdd() {
@@ -53,13 +57,20 @@ export class AddEatingHistoryPage implements OnInit {
   }
 
   addHistory() {
+    this.hd= this.addEatingHistory.value.history_date;
+    //console.log(this.hd.substring(0,10));
+    
     this.storage.get('user_id')
     .then(((val) => {
       this.user_id = val;
       //console.log(this.user_id);
+      
+      
+
       let data = {
         user_id: this.user_id,
-        date: this.addEatingHistory.value.date,
+        //hd: this.addEatingHistory.value.history_date,
+        history_date: this.hd.substring(0,10),
         cuisine_id: this.addEatingHistory.value.cuisine_id,
       }
 
