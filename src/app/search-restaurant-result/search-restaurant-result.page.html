@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      SEARCH RESTAURANT
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card
+  padding *ngFor="let restaurant of restaurants">
+    <h5><b>{{restaurant.cuisine_name}}</b></h5>
+    {{restaurant.restaurant_name}}
+    <p text-center><img src="{{restaurant.restaurant_image}}"></p>
+  </ion-card>
+
+</ion-content>

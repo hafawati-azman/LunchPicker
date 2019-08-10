@@ -24,7 +24,9 @@ const routes: Routes = [
   { path: 'user-profile', loadChildren: './user-profile/user-profile.module#UserProfilePageModule' },
   { path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule' },
   { path: 'add-eating-history', loadChildren: './add-eating-history/add-eating-history.module#AddEatingHistoryPageModule' },
-  { path: 'edit-eating-history', loadChildren: './edit-eating-history/edit-eating-history.module#EditEatingHistoryPageModule' }
+  { path: 'edit-eating-history', loadChildren: './edit-eating-history/edit-eating-history.module#EditEatingHistoryPageModule' },
+  { path: 'search-restaurant', loadChildren: './search-restaurant/search-restaurant.module#SearchRestaurantPageModule' },
+  { path: 'search-restaurant-result', loadChildren: './search-restaurant-result/search-restaurant-result.module#SearchRestaurantResultPageModule' }
 ];
 
 @NgModule({

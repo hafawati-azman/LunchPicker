@@ -34,6 +34,8 @@ export class LoginPage implements OnInit {
       user_email: this.loginForm.value.user_email,
       user_password: this.loginForm.value.user_password
     }
+
+    console.log(data);
     this.http.post('http://127.0.0.1/lp_userlogin.php', data).subscribe(
       (result) => {
         this.user_id=result;

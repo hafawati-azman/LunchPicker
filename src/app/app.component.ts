@@ -22,6 +22,11 @@ export class AppComponent {
       title: 'Profile',
       url: '/user-profile',
       icon: 'person'
+    },
+    {
+      title: 'Search',
+      url: '/search-restaurant',
+      icon: 'search'
     }
   ];
 

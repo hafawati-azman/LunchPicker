@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      SEARCH
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+<br>  <br>
+<br>
+<br>
+<br>
+
+<form [formGroup]="searchRestaurantForm" (ngSubmit)="searchRestaurant()">
+
+    <ion-label>Type of cuisine</ion-label>  
+    <ion-select interface="action-sheet" placeholder="Select one" formControlName="cuisine_id">
+      <ion-select-option value="100">Fast Food</ion-select-option>
+      <ion-select-option value="101">Asian</ion-select-option>
+      <ion-select-option value="102">Western</ion-select-option>
+      <ion-select-option value="103">Snack</ion-select-option>
+      <ion-select-option value="104">Dessert</ion-select-option>
+      <ion-select-option value="105">Others</ion-select-option>
+      <!-- <ion-select-option value="">Let system generate</ion-select-option> -->
+    </ion-select>  
+
+  <br><br>
+
+    <ion-label>Maximum budget</ion-label>  
+    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select one" formControlName="restaurant_price">
+      <ion-select-option value="5">RM 5</ion-select-option>
+      <ion-select-option value="10">RM 10</ion-select-option>
+      <ion-select-option value="15">RM 15</ion-select-option>
+      <ion-select-option value="20">RM 20</ion-select-option>
+    </ion-select>
+
+
+<ion-button padding shape="round" expand="block" type="submit" block>SEARCH</ion-button>
+
+</form>
+
+</ion-content>
