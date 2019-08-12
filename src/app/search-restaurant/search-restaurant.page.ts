@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 export class SearchRestaurantPage implements OnInit {
 
   searchRestaurantForm: FormGroup;
+  public restaurants;
 
   constructor(
     private http: HttpClient, 
@@ -29,29 +30,15 @@ export class SearchRestaurantPage implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   searchRestaurant() {
-    let data = {
-      cuisine_id: this.searchRestaurantForm.value.cuisine_id,
-      restaurant_price: this.searchRestaurantForm.value.restaurant_price,
-    }
-    console.log(data);
-    this.http.post('http://127.0.0.1/lp_searchRestaurantsql.php', data).subscribe(
-      (result) => {
-        
-        console.log(result);
-        //this.router.navigateByUrl('/search-restaurant-result');
-        ///this.presentLoading();
-        //setTimeout(() => this.router.navigateByUrl('/home'), 1500);
-      },
-      (err) => {
-        ///this.presentLoading();
-        ///setTimeout(() => this.faillogin(), 1500);
-        console.log(JSON.stringify(err));
-      }
-    );}
+ 
+    this.storage.set('cuisine_id', this.searchRestaurantForm.value.cuisine_id);
+    this.storage.set('restaurant_price', this.searchRestaurantForm.value.restaurant_price);
+    this.router.navigateByUrl('/search-restaurant-result');
 
-
-
-}
+  } // end search fx
+  
+  }

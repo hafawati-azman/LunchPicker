@@ -16,7 +16,7 @@ export class AppComponent {
     {
       title: 'Explore',
       url: '/restaurant',
-      icon: 'search'
+      icon: 'restaurant'
     },
     {
       title: 'Profile',

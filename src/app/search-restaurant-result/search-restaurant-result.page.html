@@ -11,11 +11,14 @@
 
 <ion-content>
 
-  <ion-card
-  padding *ngFor="let restaurant of restaurants">
-    <h5><b>{{restaurant.cuisine_name}}</b></h5>
-    {{restaurant.restaurant_name}}
-    <p text-center><img src="{{restaurant.restaurant_image}}"></p>
+  <ion-card padding *ngFor="let restaurant of restaurants">
+      <h5><b>{{restaurant.restaurant_name}}</b></h5>
+      <p>{{restaurant.restaurant_address}}</p>
+      <p text-center><img src="{{restaurant.restaurant_image}}"></p>
+    
+  <ion-card-content>
+   <p>Estimated budget per person: RM {{restaurant.restaurant_price}}</p> 
+  </ion-card-content>
   </ion-card>
 
 </ion-content>
