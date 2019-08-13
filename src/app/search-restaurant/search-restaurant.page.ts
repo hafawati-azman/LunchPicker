@@ -14,6 +14,7 @@ export class SearchRestaurantPage implements OnInit {
 
   searchRestaurantForm: FormGroup;
   public restaurants;
+  public systemgenerate;
 
   constructor(
     private http: HttpClient, 
@@ -30,6 +31,15 @@ export class SearchRestaurantPage implements OnInit {
   }
 
   ngOnInit() {
+    
+  }
+
+  ionViewWillEnter() {
+    this.storage.get('systemgenerate')
+      .then(((val) => {
+        this.systemgenerate = val;
+        console.log(this.systemgenerate);
+      }))  
     
   }
 

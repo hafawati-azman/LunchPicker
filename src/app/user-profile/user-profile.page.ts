@@ -18,6 +18,9 @@ export class UserProfilePage implements OnInit {
   public cuisinehistory;
   public systemgenerate: any[];
   public x = 0;
+  public mf = 1;
+  public m = 0;
+  public item;
  
 
   
@@ -92,12 +95,29 @@ export class UserProfilePage implements OnInit {
                 this.storage.set('cuisinehistory', this.cuisinehistory);
                 console.log(this.cuisinehistory);
                 this.systemgenerate = this.cuisinehistory.map(t=>t.cuisine_id);
+                // line 99 - 112: find max occurence in systemgenerate.
+                for (var i=0; i<this.systemgenerate.length; i++)
+                {
+                  for (var j=i; j<this.systemgenerate.length; j++)
+                  {
+                    if (this.systemgenerate[i] == this.systemgenerate[j])
+                    this.m++;
+                    if (this.mf<this.m)
+                    {
+                      this.mf=this.m; 
+                      this.item = this.systemgenerate[i];
+                    }
+                  }
+                this.m=0;
+                }
+
+                console.log(this.item);
+                this.storage.set('systemgenerate', this.item);
                 // while(this.x < this.cuisinehistory.length) {
                 //   this.systemgenerate = this.cuisinehistory[this.x].cuisine_id;                 
                 //   console.log(this.systemgenerate);
                 //   this.x = this.x + 1; 
                 // }
-                console.log(this.systemgenerate);
                 // this.systemgenerate = this.cuisinehistory;
                 // // console.log(this.systemgenerate);
                 // //  this.systemgenerate = Math.max.apply(null,Object.keys(this.cuisinehistory));
