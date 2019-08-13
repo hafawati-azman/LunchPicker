@@ -15,6 +15,11 @@ export class UserProfilePage implements OnInit {
   public id;
   public users;
   public history;
+  public cuisinehistory;
+  public systemgenerate: any[];
+  public x = 0;
+ 
+
   
   constructor(
     private storage: Storage,
@@ -62,11 +67,10 @@ export class UserProfilePage implements OnInit {
         let data = {
           user_id: this.user_id,
         }
-        console.log(data);
 
         this.http.post('http://127.0.0.1/lp_userprofile.php', data)
           .subscribe((data: any) => {
-            console.log(data);
+            //console.log(data);
             this.users = data;
 
           }, (error: any) => {
@@ -75,12 +79,33 @@ export class UserProfilePage implements OnInit {
         
             this.http.post('http://127.0.0.1/lp_eatinghistory.php', data)
             .subscribe((data: any) => {
-              console.log(data);
+              //console.log(data);
               this.history = data;
   
             }, (error: any) => {
                 console.log(JSON.stringify(error));
               });
+
+              this.http.post('http://127.0.0.1/lp_cuisinehistorydata.php', data)
+              .subscribe((data: any) => {
+                this.cuisinehistory = data;
+                this.storage.set('cuisinehistory', this.cuisinehistory);
+                console.log(this.cuisinehistory);
+                this.systemgenerate = this.cuisinehistory.map(t=>t.cuisine_id);
+                // while(this.x < this.cuisinehistory.length) {
+                //   this.systemgenerate = this.cuisinehistory[this.x].cuisine_id;                 
+                //   console.log(this.systemgenerate);
+                //   this.x = this.x + 1; 
+                // }
+                console.log(this.systemgenerate);
+                // this.systemgenerate = this.cuisinehistory;
+                // // console.log(this.systemgenerate);
+                // //  this.systemgenerate = Math.max.apply(null,Object.keys(this.cuisinehistory));
+                
+    
+              }, (error: any) => {
+                  console.log(JSON.stringify(error));
+                });
         
       }))
   }

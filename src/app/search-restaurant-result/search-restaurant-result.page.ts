@@ -47,6 +47,7 @@ export class SearchRestaurantResultPage implements OnInit {
         console.log(result);
         this.restaurants=result;
         this.storage.set('restaurants', this.restaurants);
+        
         console.log(this.restaurants);
         
       },

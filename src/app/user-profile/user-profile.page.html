@@ -36,7 +36,7 @@
   <ion-list>
     <ion-item-sliding *ngFor="let h of history">
       
-      <ion-item>{{h.history_date}}: {{h.cuisine_name}}</ion-item>
+      <ion-item>{{h.history_date}}: {{h.cuisine_name}}:{{h.cuisine_id}} </ion-item>
 
       <ion-item-options side="end">
         <ion-item-option color="secondary" (click)="editEatingHistory(h.id)">Edit</ion-item-option>

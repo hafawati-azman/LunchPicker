@@ -11,7 +11,13 @@
 
 <ion-content>
 
-  <ion-card padding *ngFor="let restaurant of restaurants">
+  <div *ngIf="restaurants==0">
+    <h3 text-center>No results</h3>
+    <p>We will try our best to accommodate you better in the future.</p>
+    <p>In the meantime, do try our 'Search' method again with different inputs.</p>
+  </div>
+
+  <ion-card *ngFor="let restaurant of restaurants">
       <h5><b>{{restaurant.restaurant_name}}</b></h5>
       <p>{{restaurant.restaurant_address}}</p>
       <p text-center><img src="{{restaurant.restaurant_image}}"></p>
