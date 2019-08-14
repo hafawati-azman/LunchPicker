@@ -4,6 +4,7 @@ import { Validators, FormGroup, FormBuilder, FormControl } from "@angular/forms"
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search-restaurant',
@@ -22,6 +23,7 @@ export class SearchRestaurantPage implements OnInit {
     public toastController: ToastController,
     private router: Router,
     private storage: Storage,
+    public alertCtrl: AlertController,
   ) {
 
     this.searchRestaurantForm = this.formBuilder.group({
@@ -40,7 +42,28 @@ export class SearchRestaurantPage implements OnInit {
         this.systemgenerate = val;
         console.log(this.systemgenerate);
       }))  
-    
+
+    this.presentAlert();
+  
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Reminder!',
+      message: 'Please make sure that \'\Eating History\'\ in your Profile page has a minimum of 5 entries before you select \'\Let System Generate\'\ option in Type of cuisine.',
+      // buttons: ['OK', 'Go to Profile']
+      buttons: [
+      {
+        text: 'Go to Profile',
+        handler: () => {
+          this.router.navigateByUrl('/user-profile');
+        }
+      }, {
+        text: 'Continue',
+      }]
+    });
+
+    await alert.present();
   }
 
   searchRestaurant() {

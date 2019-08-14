@@ -49,7 +49,11 @@ export class LoginPage implements OnInit {
         ///setTimeout(() => this.faillogin(), 1500);
         console.log(JSON.stringify(err));
       }
-    );}
+    );
+
+    
+  
+  }
 
 
 }
