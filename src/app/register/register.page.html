@@ -9,16 +9,39 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content text-center>
+<ion-content text-center padding>
   <br>  <br>
   <br>
   <br>
   <br>
-<form [formGroup]="registerForm" (ngSubmit)="registerUser()">
-  <ion-input placeholder="Enter name" formControlName="user_name"></ion-input>
-  <ion-input placeholder="Enter email" formControlName="user_email"></ion-input>
-  <ion-input placeholder="Enter password" formControlName="user_password"></ion-input>
-  <ion-button padding shape="round" expand="block" type="submit" block>Register</ion-button>
+<form [formGroup]="registerForm" (ngSubmit)="registerUser()" padding>
+
+  <ion-input class="border" placeholder="Enter name" formControlName="user_name"></ion-input>
+  <ng-container *ngFor="let validation of validation_messages.user_name">
+    <div *ngIf="registerForm.get('user_name').hasError(validation.type) && (registerForm.get('user_name').dirty || registerForm.get('user_name').touched)">
+      {{ validation.message }}
+    </div>
+    <br>
+  </ng-container>
+
+  <ion-input class="border" placeholder="Enter email" formControlName="user_email"></ion-input>
+  <ng-container *ngFor="let validation of validation_messages.user_email">
+      <div *ngIf="registerForm.get('user_email').hasError(validation.type) && (registerForm.get('user_email').dirty || registerForm.get('user_email').touched)">
+        {{ validation.message }}
+      </div>
+      <br>
+  </ng-container>
+
+  <ion-input class="border" placeholder="Enter password" formControlName="user_password"></ion-input>
+  <ng-container *ngFor="let validation of validation_messages.user_password">
+      <div *ngIf="registerForm.get('user_password').hasError(validation.type) && (registerForm.get('user_password').dirty || registerForm.get('user_password').touched)">
+        {{ validation.message }}
+      </div>
+      <br>
+  </ng-container>
+
+  <ion-button [disabled]="!registerForm.valid" padding shape="round" expand="block" type="submit" block>Register</ion-button>
+
   <p> Already have an account? Login <a href="/login">here!</a></p>
 </form>
 </ion-content>

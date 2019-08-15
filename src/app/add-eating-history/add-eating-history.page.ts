@@ -17,6 +17,14 @@ export class AddEatingHistoryPage implements OnInit {
   public users;
   public hd;
   
+  validation_messages = {
+    'history_date': [
+      { type: 'required', message: 'Date is required.' }
+    ],
+    'cuisine_id': [
+      { type: 'required', message: 'Type of cuisine is required.' }
+    ]
+  }
 
   constructor(
     private http: HttpClient, 
@@ -26,8 +34,8 @@ export class AddEatingHistoryPage implements OnInit {
     private storage: Storage
   ) { 
     this.addEatingHistory = this.formBuilder.group({
-      history_date: new FormControl(''),
-      cuisine_id: new FormControl(''),
+      history_date: new FormControl('', Validators.required),
+      cuisine_id: new FormControl('', Validators.required),
     })
   }
 

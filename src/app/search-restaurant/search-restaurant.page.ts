@@ -17,6 +17,15 @@ export class SearchRestaurantPage implements OnInit {
   public restaurants;
   public systemgenerate;
 
+  validation_messages = {
+    'cuisine_id': [
+      { type: 'required', message: 'Type of cuisine is required.' }
+    ],
+    'restaurant_price': [
+      { type: 'required', message: 'Price is required.' }
+    ],
+  }
+
   constructor(
     private http: HttpClient, 
     public formBuilder: FormBuilder,
@@ -27,8 +36,8 @@ export class SearchRestaurantPage implements OnInit {
   ) {
 
     this.searchRestaurantForm = this.formBuilder.group({
-      cuisine_id: new FormControl(''),
-      restaurant_price: new FormControl(''),
+      cuisine_id: new FormControl('', Validators.required),
+      restaurant_price: new FormControl('', Validators.required),
     })
   }
 

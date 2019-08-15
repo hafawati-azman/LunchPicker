@@ -17,8 +17,9 @@
 
 <form [formGroup]="searchRestaurantForm" (ngSubmit)="searchRestaurant()">
 
-    <ion-label>Type of cuisine</ion-label>  
-    <ion-select interface="action-sheet" placeholder="Select one" formControlName="cuisine_id">
+    <ion-label>Type of cuisine</ion-label> 
+    <p></p> 
+    <ion-select class="border" interface="action-sheet" placeholder="Select one" formControlName="cuisine_id">
       <ion-select-option value="100">Fast Food</ion-select-option>
       <ion-select-option value="101">Asian</ion-select-option>
       <ion-select-option value="102">Western</ion-select-option>
@@ -27,19 +28,32 @@
       <ion-select-option value="105">Others</ion-select-option>
       <ion-select-option value="{{systemgenerate}}">Let system generate</ion-select-option>
     </ion-select>  
+    <ng-container *ngFor="let validation of validation_messages.cuisine_id">
+        <div *ngIf="searchRestaurantForm.get('cuisine_id').hasError(validation.type) && (searchRestaurantForm.get('cuisine_id').dirty || searchRestaurantForm.get('cuisine_id').touched)">
+          {{ validation.message }}
+        </div>
+        <br>
+    </ng-container>
 
   <br><br>
 
-    <ion-label>Maximum budget</ion-label>  
-    <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select one" formControlName="restaurant_price">
+    <ion-label type="floating">Maximum budget</ion-label> 
+    <p></p> 
+    <ion-select class="border" [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select one" formControlName="restaurant_price">
       <ion-select-option value="5">RM 5</ion-select-option>
       <ion-select-option value="10">RM 10</ion-select-option>
       <ion-select-option value="15">RM 15</ion-select-option>
       <ion-select-option value="20">RM 20</ion-select-option>
     </ion-select>
+    <ng-container *ngFor="let validation of validation_messages.restaurant_price">
+        <div *ngIf="searchRestaurantForm.get('restaurant_price').hasError(validation.type) && (searchRestaurantForm.get('restaurant_price').dirty || searchRestaurantForm.get('restaurant_price').touched)">
+          {{ validation.message }}
+        </div>
+        <br>
+    </ng-container>
 
 
-<ion-button padding shape="round" expand="block" type="submit" block>SEARCH</ion-button>
+<ion-button padding [disabled]="!searchRestaurantForm.valid" shape="round" expand="block" type="submit" block>SEARCH</ion-button>
 
 </form>
 

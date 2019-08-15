@@ -13,6 +13,20 @@ import { Router } from '@angular/router';
 export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
+  validation_messages = {
+    'user_name': [
+      { type: 'required', message: 'Name is required.' },
+      { type: 'minlength', message: 'Name must be at least 5 characters long.' }
+    ],
+    'user_email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Your email is invalid.' }
+    ],
+    'user_password': [
+      { type: 'required', message: 'Password is required.'},
+      { type: 'minlength', message: 'Password must be at least 5 characters long.'}
+    ]
+  }
 
   constructor(
     private http: HttpClient, 
@@ -20,11 +34,22 @@ export class RegisterPage implements OnInit {
     public toastController: ToastController,
     private router: Router
   ) { 
+
     this.registerForm = this.formBuilder.group({
-      user_name: new FormControl(''),
-      user_email: new FormControl(''),
-      user_password: new FormControl(''),
+      user_name: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(5)
+      ])),
+      user_email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}')
+      ])),
+      user_password: new FormControl('', Validators.compose ([
+        Validators.required,
+        Validators.minLength(5)
+      ])),
     })
+
   }
 
   ngOnInit() {

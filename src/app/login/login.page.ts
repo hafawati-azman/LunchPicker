@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Validators, FormGroup, FormBuilder, FormControl } from "@angular/forms";
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginPage implements OnInit {
     private http: HttpClient, 
     public formBuilder: FormBuilder,
     private storage: Storage,
+    public alertCtrl: AlertController,
     private router: Router
   ) { 
     this.loginForm = this.formBuilder.group({
@@ -40,11 +42,14 @@ export class LoginPage implements OnInit {
       (result) => {
         this.user_id=result;
         this.storage.set('user_id',this.user_id);
+        if(this.user_id!="")
         this.router.navigateByUrl('/restaurant');
         ///this.presentLoading();
         //setTimeout(() => this.router.navigateByUrl('/home'), 1500);
+        
       },
       (err) => {
+        this.failLogin();
         ///this.presentLoading();
         ///setTimeout(() => this.faillogin(), 1500);
         console.log(JSON.stringify(err));
@@ -55,5 +60,16 @@ export class LoginPage implements OnInit {
   
   }
 
+  async failLogin() {
+    const alert = await this.alertCtrl.create({
+        header: 'Warning!',
+        message: 'Invalid email / password. Please try again.',
+        buttons: ['OK']
+       
+    });
+  
+    await alert.present();
+    
+  }
 
 }

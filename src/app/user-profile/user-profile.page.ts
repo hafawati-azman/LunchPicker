@@ -15,8 +15,9 @@ export class UserProfilePage implements OnInit {
   public id;
   public users;
   public history;
-  public cuisinehistory;
-  public systemgenerate: any[];
+  public cuisinehistory; // cuisine id, value.
+  public cuisinehistoryNumOnly; // array = value for cuisine id only but string.
+  public systemgenerate; // array = value for cuisine id, integer.
   public x = 0;
   public mf = 1;
   public m = 0;
@@ -94,35 +95,21 @@ export class UserProfilePage implements OnInit {
                 this.cuisinehistory = data;
                 this.storage.set('cuisinehistory', this.cuisinehistory);
                 console.log(this.cuisinehistory);
-                this.systemgenerate = this.cuisinehistory.map(t=>t.cuisine_id);
-                // line 99 - 112: find max occurence in systemgenerate.
-                for (var i=0; i<this.systemgenerate.length; i++)
-                {
-                  for (var j=i; j<this.systemgenerate.length; j++)
-                  {
-                    if (this.systemgenerate[i] == this.systemgenerate[j])
-                    this.m++;
-                    if (this.mf<this.m)
-                    {
-                      this.mf=this.m; 
-                      this.item = this.systemgenerate[i];
-                    }
-                  }
-                this.m=0;
-                }
+                this.cuisinehistoryNumOnly = this.cuisinehistory.map(t=>t.cuisine_id);
+              
+              var systemgenerate = this.cuisinehistoryNumOnly.map(Number);
+              console.log(systemgenerate);
 
-                console.log(this.item);
-                this.storage.set('systemgenerate', this.item);
-                // while(this.x < this.cuisinehistory.length) {
-                //   this.systemgenerate = this.cuisinehistory[this.x].cuisine_id;                 
-                //   console.log(this.systemgenerate);
-                //   this.x = this.x + 1; 
-                // }
-                // this.systemgenerate = this.cuisinehistory;
-                // // console.log(this.systemgenerate);
-                // //  this.systemgenerate = Math.max.apply(null,Object.keys(this.cuisinehistory));
-                
-    
+              var totalSum = 0;
+              for(var i in systemgenerate) {
+                  totalSum += systemgenerate[i];
+              }              
+              var numsCnt = systemgenerate.length;              
+              var average = totalSum / numsCnt;
+              var average = Math.ceil(average);
+              console.log(average);
+              this.storage.set('systemgenerate', average);
+                   
               }, (error: any) => {
                   console.log(JSON.stringify(error));
                 });
@@ -150,3 +137,35 @@ export class UserProfilePage implements OnInit {
 
 
 }
+
+
+// trash.
+// line 99 - 112: find max occurence in systemgenerate.
+                // for (var i=0; i<this.systemgenerate.length; i++)
+                // {
+                //   for (var j=i; j<this.systemgenerate.length; j++)
+                //   {
+                //     if (this.systemgenerate[i] == this.systemgenerate[j])
+                //     this.m++;
+                //     if (this.mf<this.m)
+                //     {
+                //       this.mf=this.m; 
+                //       this.item = this.systemgenerate[i];
+                //     }
+                //   }
+                // this.m=0;
+                // }
+
+
+                // console.log(this.item);
+                // this.storage.set('systemgenerate', this.item);
+                // while(this.x < this.cuisinehistory.length) {
+                //   this.systemgenerate = this.cuisinehistory[this.x].cuisine_id;                 
+                //   console.log(this.systemgenerate);
+                //   this.x = this.x + 1; 
+                // }
+                // this.systemgenerate = this.cuisinehistory;
+                // // console.log(this.systemgenerate);
+                // //  this.systemgenerate = Math.max.apply(null,Object.keys(this.cuisinehistory));
+
+

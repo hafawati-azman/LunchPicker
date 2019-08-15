@@ -16,7 +16,7 @@
 <form [formGroup]="editEatingHistory" (ngSubmit)="editHistory()" *ngFor="let h of history">
   <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime formControlName="history_date" display-format="DD/MMMM/YYYY" picker-format="D MMMM YYYY" placeholder="{{h.history_date}}"></ion-datetime>
+      <ion-datetime formControlName="history_date" display-format="DD/MMM/YYYY" picker-format="D MMM YYYY" placeholder="{{h.history_date}}"></ion-datetime>
   </ion-item>
 
   <ion-item>

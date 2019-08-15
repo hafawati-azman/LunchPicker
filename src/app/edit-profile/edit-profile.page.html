@@ -9,13 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content text-center>
+<ion-content text-center padding>
   <br>
   <br>
 <form [formGroup]="editProfileForm" (ngSubmit)="editUserProfile()" *ngFor="let user of users">
-  <ion-input placeholder="{{user.user_name}}" formControlName="user_name"></ion-input>
-  <ion-input placeholder="{{user.user_email}}" formControlName="user_email"></ion-input>
-  <ion-input placeholder="{{user.user_password}}" formControlName="user_password"></ion-input>
+  <ion-label>Name</ion-label>
+  <ion-input class="border" placeholder="{{user.user_name}}" formControlName="user_name"></ion-input>
+  <p></p>
+  <ion-label>Email</ion-label>
+  <ion-input class="border" placeholder="{{user.user_email}}" formControlName="user_email"></ion-input>
+  <p></p>
+  <ion-label>Password</ion-label>
+  <ion-input class="border"placeholder="Enter new password" formControlName="user_password"></ion-input>
+  <br>
   <ion-button padding shape="round" expand="block" type="submit" block>Update</ion-button>
 </form>
 <ion-button padding shape="round" expand="block" (click)="cancelEdit()" color="danger">Cancel</ion-button>
