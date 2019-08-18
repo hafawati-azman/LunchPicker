@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+    <ion-toolbar color="warning">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -26,7 +26,7 @@
       <ion-select-option value="103">Snack</ion-select-option>
       <ion-select-option value="104">Dessert</ion-select-option>
       <ion-select-option value="105">Others</ion-select-option>
-      <ion-select-option value="{{systemgenerate}}">Let system generate</ion-select-option>
+      <ion-select-option value="{{systemgenerate}}">Decide for me!</ion-select-option>
     </ion-select>  
     <ng-container *ngFor="let validation of validation_messages.cuisine_id">
         <div *ngIf="searchRestaurantForm.get('cuisine_id').hasError(validation.type) && (searchRestaurantForm.get('cuisine_id').dirty || searchRestaurantForm.get('cuisine_id').touched)">

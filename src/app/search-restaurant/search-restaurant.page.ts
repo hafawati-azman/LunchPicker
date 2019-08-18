@@ -59,7 +59,7 @@ export class SearchRestaurantPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Reminder!',
-      message: 'Please make sure that \'\Eating History\'\ in your Profile page has a minimum of 5 entries before you select \'\Let System Generate\'\ option in Type of cuisine.',
+      message: 'Please make sure that \'\Eating History\'\ in your Profile page has a minimum of 3 entries before you select \'\Decide for me!\'\ option in Type of cuisine.',
       // buttons: ['OK', 'Go to Profile']
       buttons: [
       {

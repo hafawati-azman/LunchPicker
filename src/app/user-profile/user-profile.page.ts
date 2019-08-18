@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,7 +30,8 @@ export class UserProfilePage implements OnInit {
     private storage: Storage,
     private http:HttpClient,
     public toastController: ToastController,
-    private router: Router
+    private router: Router,
+    public alertCtrl: AlertController,
   ) { }
 
   ngOnInit() {
@@ -99,7 +101,8 @@ export class UserProfilePage implements OnInit {
               
               var systemgenerate = this.cuisinehistoryNumOnly.map(Number);
               console.log(systemgenerate);
-
+              
+              // line 105 - 113: counts average to make "system generate" type of cuisine.
               var totalSum = 0;
               for(var i in systemgenerate) {
                   totalSum += systemgenerate[i];
@@ -108,6 +111,7 @@ export class UserProfilePage implements OnInit {
               var average = totalSum / numsCnt;
               var average = Math.ceil(average);
               console.log(average);
+
               this.storage.set('systemgenerate', average);
                    
               }, (error: any) => {
@@ -117,9 +121,30 @@ export class UserProfilePage implements OnInit {
       }))
   }
 
+
+  async logoutAlert() {
+    const alert = await this.alertCtrl.create({
+      header: 'Alert!',
+      message: 'Are you sure want to sign out?',
+      // buttons: ['OK', 'Go to Profile']
+      buttons: [
+      {
+        text: 'Yes',
+        handler: () => {
+          this.storage.clear();
+          this.router.navigateByUrl('/home');
+        }
+      }, {
+        text: 'No',
+      }]
+    });
+
+    await alert.present();
+  }
+
+
   logout() {
-    this.storage.clear();
-    this.router.navigateByUrl('/home');
+    this.logoutAlert();
   }
 
   editProfile() {

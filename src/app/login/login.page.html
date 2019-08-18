@@ -17,7 +17,7 @@
 <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
   <ion-input class="border" placeholder="Enter email" formControlName="user_email"></ion-input>
   <br>
-  <ion-input class="border" placeholder="Enter password" formControlName="user_password"></ion-input>
+  <ion-input class="border" placeholder="Enter password" formControlName="user_password" type="password"></ion-input>
   <br>
   <ion-button padding shape="round" expand="block" type="submit" block>SIGN IN</ion-button>
   <p> Don't have an account yet? Register <a href="/register">here!</a></p>

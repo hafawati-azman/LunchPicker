@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
 import { Validators, FormGroup, FormBuilder, FormControl } from "@angular/forms";
 
+
 @Component({
   selector: 'app-edit-eating-history',
   templateUrl: './edit-eating-history.page.html',
@@ -23,6 +24,7 @@ export class EditEatingHistoryPage implements OnInit {
     private http: HttpClient,
     private router: Router,
     public toastController: ToastController,
+    
   ) { 
     this.editEatingHistory = this.formBuilder.group({
       history_date: new FormControl(''),
@@ -113,5 +115,7 @@ export class EditEatingHistoryPage implements OnInit {
     }))
 
   }
+
+
 
 }

@@ -1,11 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+    <ion-toolbar color="warning">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <!-- <ion-buttons slot="end">
-        <ion-icon name="log-out" color="danger" size="default" (click)="logout()"></ion-icon>
-      </ion-buttons> -->
     <ion-title>
       MY PROFILE
     </ion-title>
@@ -17,33 +14,41 @@
   <ion-card *ngFor="let user of users">
       <div text-right><ion-button color="danger" shape="round" size="small" (click)="logout()">Sign Out</ion-button></div>
       <ion-card-header>
-        <ion-card-title></ion-card-title>
-        <br><br>
-        <div text-center><ion-icon name="person"></ion-icon></div>
-        <!-- <img src="assets/userprofile.jpg"> -->
+
+        <ion-card-title>
+            <ion-avatar>
+                <img src="assets/usericon.png">
+              </ion-avatar>  
+        </ion-card-title>
+        
+        <br>
         <div text-right><ion-button shape="round" size="small" fill="outline" (click)="editProfile()">Edit Profile</ion-button></div>
       </ion-card-header>
       
       <ion-card-content text-center> 
+        <ion-icon name="person"></ion-icon>: 
         <p>{{user.user_name}}</p>
+        <ion-icon name="mail"></ion-icon>: 
         <p>{{user.user_email}}</p>
-        <br><br>
+        <br>
       </ion-card-content>
-  </ion-card>
 
+
+  </ion-card>
+  <br>
   <h4 text-center>Eating history:</h4>
   <div text-right><ion-button size="small" (click)="addEatingHistory()">Add?</ion-button></div>
   
   <ion-list>
-    <ion-item-sliding *ngFor="let h of history">
+    <ion-item *ngFor="let h of history">
       
-      <ion-item>{{h.history_date}}: {{h.cuisine_name}}</ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="secondary" (click)="editEatingHistory(h.id)">Edit</ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
+      {{h.history_date}}: {{h.cuisine_name}}
+        <ion-buttons slot="start">
+          <ion-button shape="round" color="success" size="small" fill="outline" (click)="editEatingHistory(h.id)">Edit</ion-button>
+        </ion-buttons>
+      
+      
+    </ion-item>
   </ion-list>
       
 </ion-content>
