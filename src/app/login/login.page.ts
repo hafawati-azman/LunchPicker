@@ -59,13 +59,11 @@ export class LoginPage implements OnInit {
       }
     );
 
-    
-  
   }
 
   async failLogin() {
     const alert = await this.alertCtrl.create({
-        header: 'Warning!',
+        header: 'Authorisation failed!',
         message: 'Invalid email / password. Please try again.',
         buttons: ['OK']
        

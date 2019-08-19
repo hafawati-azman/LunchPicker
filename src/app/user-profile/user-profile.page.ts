@@ -124,7 +124,7 @@ export class UserProfilePage implements OnInit {
 
   async logoutAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Alert!',
+      header: 'Sign out alert!',
       message: 'Are you sure want to sign out?',
       // buttons: ['OK', 'Go to Profile']
       buttons: [
