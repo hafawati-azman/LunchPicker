@@ -155,6 +155,10 @@ export class UserProfilePage implements OnInit {
     this.router.navigateByUrl('/add-eating-history');
   }
 
+  makeAnalysis() {
+    this.router.navigateByUrl('/analysis');
+  }
+
   editEatingHistory(id) {
     this.storage.set('id',id);
     this.router.navigate(['/edit-eating-history/']);

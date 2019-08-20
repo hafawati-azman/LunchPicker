@@ -38,11 +38,14 @@
   <br>
   <h4 text-center>Eating history:</h4>
   <div text-right><ion-button size="small" (click)="addEatingHistory()">Add?</ion-button></div>
-  
+  <br>
+  <div *ngIf="history!=0" text-center><ion-button fill="outline" (click)="makeAnalysis()">Analysis</ion-button></div>
+  <br>
+
   <ion-list>
     <ion-item *ngFor="let h of history">
       
-      {{h.history_date}}: {{h.cuisine_name}}
+      {{h.history_date}}: {{h.restaurant_name}} ({{h.cuisine_name}})
         <ion-buttons slot="start">
           <ion-button shape="round" color="success" size="small" fill="outline" (click)="editEatingHistory(h.id)">Edit</ion-button>
         </ion-buttons>

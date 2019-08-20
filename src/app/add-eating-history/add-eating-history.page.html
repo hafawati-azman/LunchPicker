@@ -10,14 +10,14 @@
 </ion-header>
 
 
-<ion-content text-center>
+<ion-content text-center padding>
 <pre></pre>
 
-<form [formGroup]="addEatingHistory" (ngSubmit)="addHistory()">
+<form [formGroup]="addEatingHistory" (ngSubmit)="addHistory()" padding>
 
   <ion-item>
     <ion-label>Date</ion-label>
-    <ion-datetime formControlName="history_date" display-format="DD/MMM/YYYY" picker-format="D MMM YYYY"></ion-datetime>
+    <ion-datetime formControlName="history_date" display-format="DD/MMM/YYYY" picker-format="D MMM YYYY" placeholder="Select date"></ion-datetime>
   </ion-item>
   <ng-container *ngFor="let validation of validation_messages.history_date">
       <div *ngIf="addEatingHistory.get('history_date').hasError(validation.type) && (addEatingHistory.get('history_date').dirty || addEatingHistory.get('history_date').touched)">
@@ -25,11 +25,17 @@
       </div>
       <br>
     </ng-container>
+    <br>
 
   <!--<ion-input placeholder="Date (YYYY-MM-DD)" formControlName="date"></ion-input>
    <ion-input placeholder="Type of cuisine" formControlName="cuisine_id"></ion-input> -->
   
-  <ion-item>
+  
+    <ion-label>Restaurant's name:</ion-label>
+    <ion-input class="border" formControlName="restaurant_name"></ion-input>
+    <br><br>
+
+  
     <ion-label>Type of cuisine</ion-label>
     <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Select One"
     formControlName="cuisine_id">
@@ -40,14 +46,19 @@
       <ion-select-option value="104">Dessert</ion-select-option>
       <ion-select-option value="105">Others</ion-select-option>
     </ion-select>
-  </ion-item>
+  
   <ng-container *ngFor="let validation of validation_messages.cuisine_id">
       <div *ngIf="addEatingHistory.get('cuisine_id').hasError(validation.type) && (addEatingHistory.get('cuisine_id').dirty || addEatingHistory.get('cuisine_id').touched)">
         {{ validation.message }}
       </div>
       <br>
     </ng-container>
-
+    
+    
+    <ion-label>Amount of money's spent:</ion-label>
+    <ion-input class="border" formControlName="food_price"></ion-input>
+    
+  <br><br>
   <ion-button padding [disabled]="!addEatingHistory.valid" shape="round" expand="block" type="submit" block>Add Eating History</ion-button>
 
 </form>

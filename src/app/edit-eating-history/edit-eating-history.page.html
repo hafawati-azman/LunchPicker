@@ -10,7 +10,7 @@
   </ion-header>
 
 
-<ion-content>
+<ion-content text-center padding>
 <pre></pre>
 
 <form [formGroup]="editEatingHistory" (ngSubmit)="editHistory()" *ngFor="let h of history">
@@ -19,7 +19,13 @@
       <ion-datetime formControlName="history_date" display-format="DD/MMM/YYYY" picker-format="D MMM YYYY" placeholder="{{h.history_date}}"></ion-datetime>
   </ion-item>
 
-  <ion-item>
+  <br><br>
+
+  <ion-label>Restaurant's name:</ion-label>
+    <ion-input class="border" formControlName="restaurant_name" placeholder="{{h.restaurant_name}}"></ion-input>
+    <br><br>
+
+  
       <ion-label>Type of cuisine</ion-label>
       <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="{{h.cuisine_name}}" formControlName="cuisine_id">
           
@@ -30,7 +36,12 @@
             <ion-select-option value="104">Dessert</ion-select-option>
             <ion-select-option value="105">Others</ion-select-option>
       </ion-select>
-  </ion-item>
+  <br>
+
+  <ion-label>Amount of money's spent:</ion-label>
+    <ion-input class="border" formControlName="food_price" placeholder="RM {{h.food_price}}"></ion-input>
+
+  <br><br>
 
 <ion-button padding shape="round" expand="block" color="success" type="submit">Edit</ion-button>
 

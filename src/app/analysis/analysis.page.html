@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="warning">
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-title>
+    ANALYSIS
+  </ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>  
+
+<br>
+<h4 text-center>ANALYSIS OF EATING HISTORY</h4>
+<br>
+
+<ion-list>
+  <ion-item *ngFor="let h of history">
+    {{h.restaurant_name}} ({{h.cuisine_name}}): RM {{h.food_price}}
+  </ion-item>
+</ion-list>
+    
+</ion-content>

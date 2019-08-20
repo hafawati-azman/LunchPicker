@@ -29,6 +29,8 @@ export class EditEatingHistoryPage implements OnInit {
     this.editEatingHistory = this.formBuilder.group({
       history_date: new FormControl(''),
       cuisine_id: new FormControl(''),
+      restaurant_name: new FormControl(''),
+      food_price: new FormControl(''),
     })
   }
 
@@ -64,9 +66,11 @@ export class EditEatingHistoryPage implements OnInit {
          id: this.id,
          history_date: this.hd.substring(0,10),
          cuisine_id: this.editEatingHistory.value.cuisine_id,
+         restaurant_name: this.editEatingHistory.value.restaurant_name,
+         food_price: this.editEatingHistory.value.food_price,
       }
 
-      //console.log(data);
+      console.log(data);
 
       this.http.post('http://127.0.0.1/lp_editeatinghistory.php', data).subscribe(
       async (result) => {

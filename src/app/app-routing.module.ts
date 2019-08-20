@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'add-eating-history', loadChildren: './add-eating-history/add-eating-history.module#AddEatingHistoryPageModule' },
   { path: 'edit-eating-history', loadChildren: './edit-eating-history/edit-eating-history.module#EditEatingHistoryPageModule' },
   { path: 'search-restaurant', loadChildren: './search-restaurant/search-restaurant.module#SearchRestaurantPageModule' },
-  { path: 'search-restaurant-result', loadChildren: './search-restaurant-result/search-restaurant-result.module#SearchRestaurantResultPageModule' }
+  { path: 'search-restaurant-result', loadChildren: './search-restaurant-result/search-restaurant-result.module#SearchRestaurantResultPageModule' },
+  { path: 'analysis', loadChildren: './analysis/analysis.module#AnalysisPageModule' }
 ];
 
 @NgModule({

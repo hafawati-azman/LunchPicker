@@ -36,6 +36,8 @@ export class AddEatingHistoryPage implements OnInit {
     this.addEatingHistory = this.formBuilder.group({
       history_date: new FormControl('', Validators.required),
       cuisine_id: new FormControl('', Validators.required),
+      restaurant_name: new FormControl(''),
+      food_price: new FormControl(''),
     })
   }
 
@@ -80,6 +82,8 @@ export class AddEatingHistoryPage implements OnInit {
         //hd: this.addEatingHistory.value.history_date,
         history_date: this.hd.substring(0,10),
         cuisine_id: this.addEatingHistory.value.cuisine_id,
+        restaurant_name: this.addEatingHistory.value.restaurant_name,
+        food_price: this.addEatingHistory.value.food_price,
       }
 
     console.log(data);
