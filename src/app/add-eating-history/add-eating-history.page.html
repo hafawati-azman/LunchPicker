@@ -55,14 +55,13 @@
     </ng-container>
     
     
-    <ion-label>Amount of money's spent:</ion-label>
+    <ion-label>Amount of money's spent: (i.e: 10.00 / 5.50)</ion-label>
     <ion-input class="border" formControlName="food_price"></ion-input>
     
-  <br><br>
+  <br>
   <ion-button padding [disabled]="!addEatingHistory.valid" shape="round" expand="block" type="submit" block>Add Eating History</ion-button>
 
 </form>
-
 <ion-button padding shape="round" expand="block" (click)="cancelAdd()" color="danger">Cancel</ion-button>
 
 
