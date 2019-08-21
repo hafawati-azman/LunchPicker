@@ -20,6 +20,21 @@ export class AnalysisPage implements OnInit {
   public history;
   public analysishistory;
   public datachart;
+  public cuisine;
+  public price;
+  public x=0;
+  public fastFood=0;
+  public sumFastFood=0;
+  public asian=0;
+  public sumAsian=0;
+  public western=0;
+  public sumWestern=0;
+  public snack=0;
+  public sumSnack=0;
+  public dessert=0;
+  public sumDessert=0;
+  public others=0;
+  public sumOthers=0;
 
   constructor(
     private storage: Storage,
@@ -28,28 +43,6 @@ export class AnalysisPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: "doughnut",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 0, 0],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
-          }
-        ]
-      }
-    });
 
   }
 
@@ -64,7 +57,7 @@ export class AnalysisPage implements OnInit {
         
             this.http.post('http://127.0.0.1/lp_eatinghistory.php', data)
             .subscribe((data: any) => {
-              console.log(data);
+              
               this.history = data;
   
             }, (error: any) => {
@@ -74,30 +67,60 @@ export class AnalysisPage implements OnInit {
               //array of cuisine id and food price.
               this.http.post('http://127.0.0.1/lp_analysishistory.php', data)
               .subscribe((data: any) => {
-                console.log(data);
+                
                 this.analysishistory = data;
                 
+                this.cuisine = this.analysishistory.map(t=>t.cuisine_id);
+                this.price = this.analysishistory.map(t=>t.food_price);
+                this.price = this.price.map(Number);
+              
+
+                while(this.x < this.cuisine.length)
+                {
+                  if(this.cuisine[this.x]=="100")
+                  {
+                    this.fastFood = this.price[this.x];
+                    this.sumFastFood += this.fastFood;
+                  }
+                  if(this.cuisine[this.x]=="101")
+                  {
+                    this.asian = this.price[this.x];
+                    this.sumAsian += this.asian;
+                  }
+                  if(this.cuisine[this.x]=="102")
+                  {
+                    this.western = this.price[this.x];
+                    this.sumWestern += this.western;
+                  }
+                  if(this.cuisine[this.x]=="103")
+                  {
+                    this.snack = this.price[this.x];
+                    this.sumSnack += this.snack;
+                  }
+                  if(this.cuisine[this.x]=="104")
+                  {
+                    this.dessert = this.price[this.x];
+                    this.sumDessert += this.dessert;
+                  }
+                  if(this.cuisine[this.x]=="105")
+                  {
+                    this.others = this.price[this.x];
+                    this.sumOthers += this.others;
+                  }
+                  
+                  this.x = this.x + 1;
+                }
+
                 
-                console.log(this.analysishistory.map(t=>t.cuisine_id));
-                
-                // if(this.analysishistory.map(t=>t.cuisine_id)[0]=="101")
-                // {
-                //   var x = this.analysishistory.map(t=>t.food_price)[0];
-                // }
-                this.datachart = this.analysishistory.map(t=>t.food_price);
-                //console.log(this.analysishistory[3]);
 
                 this.barChart = new Chart(this.barCanvas.nativeElement, {
                   type: "bar",
                   data: {
-                    // labels: ["Fast Food", "Asian", "Western", "Snack", "Dessert", "Others"],
-                    labels: this.analysishistory.map(t=>t.cuisine_id),
+                    labels: ["Fast Food", "Asian", "Western", "Snack", "Dessert", "Others"],
                     datasets: [
                       {
                         label: "Amount of money spent",
-                        // data: [10, 10.5, 10.7, 0, 0, 0],
-                        
-                        data: this.datachart,
+                        data: [this.sumFastFood, this.sumAsian, this.sumWestern, this.sumSnack, this.sumDessert, this.sumOthers],
                         backgroundColor: [
                           "rgba(255, 99, 132, 0.2)",
                           "rgba(54, 162, 235, 0.2)",
@@ -128,6 +151,29 @@ export class AnalysisPage implements OnInit {
                         }
                       ]
                     }
+                  }
+                });
+
+
+                this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+                  type: "doughnut",
+                  data: {
+                    labels: ["Fast Food", "Asian", "Western", "Snack", "Dessert", "Others"],
+                    datasets: [
+                      {
+                        label: "Amount of money spent",
+                        data: [this.sumFastFood, this.sumAsian, this.sumWestern, this.sumSnack, this.sumDessert, this.sumOthers],
+                        backgroundColor: [
+                          "rgba(255, 99, 132, 0.2)",
+                          "rgba(54, 162, 235, 0.2)",
+                          "rgba(255, 206, 86, 0.2)",
+                          "rgba(75, 192, 192, 0.2)",
+                          "rgba(153, 102, 255, 0.2)",
+                          "rgba(255, 159, 64, 0.2)"
+                        ],
+                        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
+                      }
+                    ]
                   }
                 });
     

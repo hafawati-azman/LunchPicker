@@ -15,9 +15,11 @@
 <h4 text-center>ANALYSIS OF EATING HISTORY</h4>
 <br>
 
+<div class="ion-padding"><canvas #doughnutCanvas></canvas></div>
+
 <ion-list>
   <ion-item *ngFor="let h of history">
-    {{h.restaurant_name}} ({{h.cuisine_name}}): RM {{h.food_price}}
+    {{h.cuisine_name}} — {{h.restaurant_name}}: RM {{h.food_price}}
   </ion-item>
 </ion-list>
 
@@ -31,25 +33,8 @@
       <canvas #barCanvas></canvas>
     </ion-card-content>
   </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      Doughnut Chart
-    </ion-card-header>
-    <ion-card-content>
+   
       <canvas #doughnutCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
 </div>
-
     
 </ion-content>
