@@ -28,7 +28,7 @@ export class ShowRestaurantPage implements OnInit {
       this.restaurant_description = data.restaurant_description;
       this.restaurant_price = data.restaurant_price;
       this.restaurant_address = data.restaurant_address;
-      console.log(data);
+      //console.log(data);
       
     });
   }

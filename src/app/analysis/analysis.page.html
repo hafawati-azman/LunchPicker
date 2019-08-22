@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="warning">
   <ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
+    <ion-back-button defaultHref="/user-profile"></ion-back-button>
   </ion-buttons>
   <ion-title>
     ANALYSIS
@@ -17,11 +17,18 @@
 
 <div class="ion-padding"><canvas #doughnutCanvas></canvas></div>
 
-<ion-list>
+<!-- <ion-list>
   <ion-item *ngFor="let h of history">
     {{h.cuisine_name}} — {{h.restaurant_name}}: RM {{h.food_price}}
+    
   </ion-item>
-</ion-list>
+</ion-list> -->
+
+<ion-card *ngFor="let h of history">
+  <ion-card-content>
+      <ion-icon name="restaurant"></ion-icon> {{h.cuisine_name}} — {{h.restaurant_name}}: RM {{h.food_price}}
+  </ion-card-content>
+</ion-card>
 
 
 <div class="ion-padding">

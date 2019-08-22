@@ -62,7 +62,7 @@ export class EditProfilePage implements OnInit {
         user_password: this.editProfileForm.value.user_password,
       }
 
-    console.log(data);
+    //console.log(data);
     this.http.post('http://127.0.0.1/lp_edituserprofile.php', data).subscribe(
       async (result) => {
         console.log(result);

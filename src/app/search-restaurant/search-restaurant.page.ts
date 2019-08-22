@@ -49,7 +49,7 @@ export class SearchRestaurantPage implements OnInit {
     this.storage.get('systemgenerate')
       .then(((val) => {
         this.systemgenerate = val;
-        console.log(this.systemgenerate);
+        //console.log(this.systemgenerate);
       }))  
 
     this.presentAlert();

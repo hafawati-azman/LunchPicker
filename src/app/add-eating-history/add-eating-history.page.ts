@@ -86,7 +86,7 @@ export class AddEatingHistoryPage implements OnInit {
         food_price: this.addEatingHistory.value.food_price,
       }
 
-    console.log(data);
+    //console.log(data);
     this.http.post('http://127.0.0.1/lp_addeatinghistory.php', data).subscribe(
       async (result) => {
         console.log(result);

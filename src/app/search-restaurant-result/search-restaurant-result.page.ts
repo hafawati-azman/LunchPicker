@@ -41,14 +41,14 @@ export class SearchRestaurantResultPage implements OnInit {
           restaurant_price: this.restaurant_price,
         }
         
-        console.log(data);
+        //console.log(data);
         this.http.post('http://127.0.0.1/lp_searchRestaurantsql.php', data).subscribe(
       (result) => {
-        console.log(result);
+        //console.log(result);
         this.restaurants=result;
         this.storage.set('restaurants', this.restaurants);
         
-        console.log(this.restaurants);
+        //console.log(this.restaurants);
         
       },
       (err) => {

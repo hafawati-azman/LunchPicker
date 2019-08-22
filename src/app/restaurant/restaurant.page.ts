@@ -19,7 +19,7 @@ export class RestaurantPage implements OnInit {
     this.http.get('http://127.0.0.1/lp_restaurant.php')
     .subscribe((data : any) =>
     {
-       console.log(data);
+       //console.log(data);
        this.restaurants = data;
     },(error : any) =>
     {

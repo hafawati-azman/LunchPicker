@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
     }
 
 
-    console.log(data);
+    //console.log(data);
     this.http.post('http://127.0.0.1/lp_userlogin.php', data).subscribe(
       (result) => {
         this.user_id=result;

@@ -60,7 +60,7 @@ export class EditEatingHistoryPage implements OnInit {
     this.storage.get('id')
     .then(((val) => {
       this.id = val;
-      console.log(this.id);
+      //console.log(this.id);
 
       let data = {
          id: this.id,
@@ -70,7 +70,6 @@ export class EditEatingHistoryPage implements OnInit {
          food_price: this.editEatingHistory.value.food_price,
       }
 
-      console.log(data);
 
       this.http.post('http://127.0.0.1/lp_editeatinghistory.php', data).subscribe(
       async (result) => {

@@ -96,11 +96,11 @@ export class UserProfilePage implements OnInit {
               .subscribe((data: any) => {
                 this.cuisinehistory = data;
                 this.storage.set('cuisinehistory', this.cuisinehistory);
-                console.log(this.cuisinehistory);
+                //console.log(this.cuisinehistory);
                 this.cuisinehistoryNumOnly = this.cuisinehistory.map(t=>t.cuisine_id);
               
               var systemgenerate = this.cuisinehistoryNumOnly.map(Number);
-              console.log(systemgenerate);
+              //console.log(systemgenerate);
               
               // line 105 - 113: counts average to make "system generate" type of cuisine.
               var totalSum = 0;
@@ -110,7 +110,7 @@ export class UserProfilePage implements OnInit {
               var numsCnt = systemgenerate.length;              
               var average = totalSum / numsCnt;
               var average = Math.ceil(average);
-              console.log(average);
+              //console.log(average);
 
               this.storage.set('systemgenerate', average);
                    
