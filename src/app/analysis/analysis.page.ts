@@ -35,6 +35,13 @@ export class AnalysisPage implements OnInit {
   public sumDessert=0;
   public others=0;
   public sumOthers=0;
+  public y=0;
+  public asianExpense = [];
+  public i=0;
+  public totalSpending = [];
+  public m = 0;
+  public mf;
+  public item;
 
   constructor(
     private storage: Storage,
@@ -74,7 +81,7 @@ export class AnalysisPage implements OnInit {
                 this.price = this.analysishistory.map(t=>t.food_price);
                 this.price = this.price.map(Number);
               
-
+                // calculate total spending for each cuisine.
                 while(this.x < this.cuisine.length)
                 {
                   if(this.cuisine[this.x]=="100")
@@ -111,16 +118,57 @@ export class AnalysisPage implements OnInit {
                   this.x = this.x + 1;
                 }
 
-                
-
-                this.barChart = new Chart(this.barCanvas.nativeElement, {
-                  type: "bar",
+                // doughnutchart to show total spending for all cuisines.
+                this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
+                  type: "doughnut",
                   data: {
                     labels: ["Fast Food", "Asian", "Western", "Snack", "Dessert", "Others"],
                     datasets: [
                       {
                         label: "Amount of money spent",
                         data: [this.sumFastFood, this.sumAsian, this.sumWestern, this.sumSnack, this.sumDessert, this.sumOthers],
+                        backgroundColor: [
+                          "rgba(255, 99, 132, 0.2)",
+                          "rgba(54, 162, 235, 0.2)",
+                          "rgba(255, 206, 86, 0.2)",
+                          "rgba(75, 192, 192, 0.2)",
+                          "rgba(153, 102, 255, 0.2)",
+                          "rgba(255, 159, 64, 0.2)"
+                        ],
+                        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
+                      }
+                    ]
+                  }
+                });
+                
+                //list down prices for all asian cuisine.
+                while(this.y < this.cuisine.length)
+                {
+                  if(this.cuisine[this.y]=="101")
+                  {
+                    this.asianExpense.push(this.price[this.y]);
+                  }
+                  this.y += 1;
+                }
+                console.log(this.asianExpense);
+                
+                //put total spending for each cuisine in one array.
+                this.totalSpending.push(this.sumFastFood);
+                this.totalSpending.push(this.sumAsian);
+                this.totalSpending.push(this.sumWestern);
+                this.totalSpending.push(this.sumSnack);
+                this.totalSpending.push(this.sumDessert);
+                this.totalSpending.push(this.sumOthers);
+                console.log(this.totalSpending);
+    
+                this.barChart = new Chart(this.barCanvas.nativeElement, {
+                  type: "bar",
+                  data: {
+                    labels: ["Asian", "Western"],
+                    datasets: [
+                      {
+                        label: "total spending",
+                        data: [this.sumAsian, this.sumWestern],
                         backgroundColor: [
                           "rgba(255, 99, 132, 0.2)",
                           "rgba(54, 162, 235, 0.2)",
@@ -153,30 +201,6 @@ export class AnalysisPage implements OnInit {
                     }
                   }
                 });
-
-
-                this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-                  type: "doughnut",
-                  data: {
-                    labels: ["Fast Food", "Asian", "Western", "Snack", "Dessert", "Others"],
-                    datasets: [
-                      {
-                        label: "Amount of money spent",
-                        data: [this.sumFastFood, this.sumAsian, this.sumWestern, this.sumSnack, this.sumDessert, this.sumOthers],
-                        backgroundColor: [
-                          "rgba(255, 99, 132, 0.2)",
-                          "rgba(54, 162, 235, 0.2)",
-                          "rgba(255, 206, 86, 0.2)",
-                          "rgba(75, 192, 192, 0.2)",
-                          "rgba(153, 102, 255, 0.2)",
-                          "rgba(255, 159, 64, 0.2)"
-                        ],
-                        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#FF6384", "#36A2EB", "#FFCE56"]
-                      }
-                    ]
-                  }
-                });
-    
               }, (error: any) => {
                   console.log(JSON.stringify(error));
                 });

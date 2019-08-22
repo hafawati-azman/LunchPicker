@@ -10,38 +10,24 @@
 </ion-header>
 
 <ion-content>  
-
-<br>
-<h4 text-center>ANALYSIS OF EATING HISTORY</h4>
 <br>
 
+<p text-center>Total spending for each Type of Cuisine</p>
 <div class="ion-padding"><canvas #doughnutCanvas></canvas></div>
+<br><br>
 
-<!-- <ion-list>
-  <ion-item *ngFor="let h of history">
-    {{h.cuisine_name}} — {{h.restaurant_name}}: RM {{h.food_price}}
-    
-  </ion-item>
-</ion-list> -->
+<p text-center>Total spending: Asian vs Western cuisines</p>
+<div class="ion-padding"><canvas #barCanvas></canvas></div>
+<br><br>
 
-<ion-card *ngFor="let h of history">
+<p text-center>List of Fast Food spending</p>
+<div *ngFor="let h of history">
+  <div  *ngIf="h.cuisine_id==100">
+<ion-card>
   <ion-card-content>
-      <ion-icon name="restaurant"></ion-icon> {{h.cuisine_name}} — {{h.restaurant_name}}: RM {{h.food_price}}
+    {{h.restaurant_name}}: RM{{h.food_price}}
   </ion-card-content>
-</ion-card>
+</ion-card></div></div>
 
-
-<div class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      Bar Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #barCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
-   
-      <canvas #doughnutCanvas></canvas>
-</div>
     
 </ion-content>
